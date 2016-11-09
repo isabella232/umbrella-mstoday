@@ -1,0 +1,39 @@
+.signup-interstitial,
+.donate-interstitial,
+.single .scaip {
+  padding: 20px 40px;
+  background-color: lighten(@ltblue, 25%);
+  margin-bottom: 2em;
+  text-align: center;
+  .widget {
+    margin-bottom: 0;
+    p {
+	  margin-bottom: 12px;
+	  font-size: 18px;
+    }
+  }
+  //mailchimp stuff
+  input[type=email] {
+    padding: 10px;
+  }
+  #mc-embedded-subscribe {
+    margin-top: -7px;
+    padding-bottom: 9px;
+  }
+  @media (max-width: 500px) {
+    #mc-embedded-subscribe {
+	  clear: both;
+	  margin: 0;
+	  padding-bottom: 10px;
+    }
+  }
+}
+.single .scaip {
+  clear: both;
+  display: block;
+  h5.visuallyhidden {
+    position: static;
+    height: auto;
+    width: auto;
+  }
+}

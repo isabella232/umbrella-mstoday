@@ -1,0 +1,62 @@
+@import "../../../less/_vars.less";
+
+.homepage-top-rail {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 24px 0;
+  margin-bottom: 48px;
+}
+.homepage-top-rail-left {
+  .entry-content.with-hero {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .hero.is-image,
+  .hero.is-video {
+    margin-bottom: 12px;
+  }
+  article {
+    margin-bottom: 0;
+  }
+  h2.entry-title {
+    font-size: 28px;
+    line-height: 1.165;
+    margin-bottom: 12px;
+  }
+}
+.homepage-top-rail-right .widget {
+  padding-top: 0;
+}
+@media (min-width: 500px) {
+  .homepage-top-rail-left {
+    max-width: 45%;
+    float: left;
+    padding-right: 4.75%;
+    border-right: 1px solid #ddd;
+  }
+  .homepage-top-rail-right {
+    max-width: 45%;
+    padding-left: 4.75%;
+    border-left: 1px solid #ddd;
+    float: left;
+    position: relative;
+    left: -1px;
+  }
+}
+@media (max-width: 500px) {
+  .homepage-top-rail {
+    margin-bottom: 24px;
+  }
+  .homepage-top-post article {
+    margin-bottom: 12px;
+  }
+  .homepage-top-rail-left {
+    padding-bottom: 0;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid #ddd;
+  }
+  .homepage-top-rail-right .widget {
+    margin-bottom: 0;
+  }
+}
