@@ -99,3 +99,42 @@ function mstoday_remove_category_header_on_this_one_specific_category() {
 	}
 }
 add_action( 'pre_get_posts', 'mstoday_remove_category_header_on_this_one_specific_category', 1 );
+
+/**
+ * Add the stylesheet, script, and initialization call for the Add To Home Screen prompt
+ *
+ * @link http://cubiq.org/add-to-home-screen
+ * @action wp_head
+ * @since 2016-11-21
+ */
+function mstoday_add_to_home_screen_enqueue() {
+	wp_enqueue_script(
+		'cubiq-add-to-home-script',
+		get_stylesheet_directory_uri() . '/cubiq-add-to-homescreen/src/addtohomescreen.min.js',
+		array(),
+		'3.2.3',
+		false
+	);
+	wp_enqueue_style(
+		'cubiq-add-to-home-style',
+		get_stylesheet_directory_uri() . '/cubiq-add-to-homescreen/style/addtohomescreen.css',
+		array(),
+		'3.2.3',
+		screen
+	);
+}
+add_action( 'wp_enqueue_scripts', 'mstoday_add_to_home_screen_enqueue' );
+
+function mstoday_add_to_home_screen_initialize() {
+	?>
+		<script type="text/javascript">
+			addToHomescreen({
+				skipFirstVisit: true,
+				displayPace: 2880, // default is 1440, once per day
+				maxDisplayCount: 3,
+				debug: true,
+			});
+		</script>
+	<?php
+}
+add_action( 'wp_head', 'mstoday_add_to_home_screen_initialize' );
