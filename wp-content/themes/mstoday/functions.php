@@ -110,7 +110,7 @@ add_action( 'pre_get_posts', 'mstoday_remove_category_header_on_this_one_specifi
 function mstoday_add_to_home_screen_enqueue() {
 	wp_enqueue_script(
 		'cubiq-add-to-home-script',
-		get_stylesheet_directory_uri() . '/cubiq-add-to-homescreen/src/addtohomescreen.min.js',
+		get_stylesheet_directory_uri() . '/cubiq-add-to-homescreen/src/addtohomescreen.js',
 		array(),
 		'3.2.3',
 		false
@@ -129,9 +129,8 @@ function mstoday_add_to_home_screen_initialize() {
 	?>
 		<script type="text/javascript">
 			addToHomescreen({
-				skipFirstVisit: true,
-				displayPace: 2880, // default is 1440, once per day
-				maxDisplayCount: 3,
+				maxDisplayCount: 0,
+				displayPace: 1,
 				debug: true,
 			});
 		</script>
