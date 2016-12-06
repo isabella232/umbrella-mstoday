@@ -132,6 +132,7 @@ function mstoday_add_to_home_screen_initialize() {
 				maxDisplayCount: 0,
 				displayPace: 1,
 				debug: true,
+				lifespan: 0,
 			});
 		</script>
 	<?php
