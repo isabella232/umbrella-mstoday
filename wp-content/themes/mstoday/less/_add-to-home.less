@@ -8,7 +8,7 @@
   left: 0;
   margin-left: 0;
   text-align: left;
-  width: 100%;
+  width: 100% !important;
   position: fixed;
   padding: 3em 3em 2em;
   border-top: 4px solid @red;
@@ -18,10 +18,21 @@
 .ath-container img {
    float: right;
 }
+.ath-ios8.ath-tablet {
+  top: inherit !important;
+  right: inherit !important;
+}
+.ath-ios.ath-phone {
+  left: inherit !important;
+  margin-left: 0 !important;
+}
 
 @media only screen and (orientation: landscape) {
   .ath-android.ath-phone {
     margin-left: 0 !important;
     width: 100%;
+  }
+  .ath-ios8.ath-phone:after {
+    left: 50% !important;
   }
 }
