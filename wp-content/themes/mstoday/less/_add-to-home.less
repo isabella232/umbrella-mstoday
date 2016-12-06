@@ -1,0 +1,27 @@
+/*
+ * Styles for the Add To Home script
+ */
+.ath-container {
+  transition-duration: 1ms !important;
+
+  bottom: 0;
+  left: 0;
+  margin-left: 0;
+  text-align: left;
+  width: 100%;
+  position: fixed;
+  padding: 3em 3em 2em;
+  border-top: 4px solid @red;
+  background-color:#fff;
+}
+
+.ath-container img {
+   float: right;
+}
+
+@media only screen and (orientation: landscape) {
+  .ath-android.ath-phone {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+}

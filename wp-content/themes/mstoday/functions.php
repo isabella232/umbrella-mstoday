@@ -130,7 +130,7 @@ function mstoday_add_to_home_screen_initialize() {
 		<script type="text/javascript">
 			addToHomescreen({
 				maxDisplayCount: 0,
-				displayPace: 1,
+				displayPace: 0,
 				debug: true,
 				lifespan: 0,
 			});
