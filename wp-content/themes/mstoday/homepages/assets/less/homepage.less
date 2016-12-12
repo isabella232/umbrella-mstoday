@@ -1,4 +1,6 @@
 @import "../../../less/_vars.less";
+@homepageheadlinemodifier: 1.2;
+@hhm: @homepageheadlinemodifier;
 
 .homepage-top-rail {
   border-top: 1px solid #ddd;
@@ -20,7 +22,6 @@
     margin-bottom: 0;
   }
   h2.entry-title {
-    font-size: 28px;
     line-height: 1.165;
     margin-bottom: 12px;
   }
@@ -43,6 +44,26 @@
     position: relative;
     left: -1px;
   }
+
+  // desktop font size increase, by request
+  .stories h2.entry-title,
+  .homepage-top-post h2 {
+    font-size: @hhm * 2em;
+  }
+  .homepage-top-rail-right .widget {
+    h5 {
+      font-size: 20px * @hhm;
+    }
+  }
+  .homepage-top-rail-left .widget {
+    h2 {
+      font-size: 28px * @hhm;
+    }
+  }
+  #sidebar .widget h5 {
+      font-size: 20px * @hhm;
+  }
+
 }
 @media (max-width: 500px) {
   .homepage-top-rail {
@@ -55,6 +76,9 @@
     padding-bottom: 0;
     margin-bottom: 1.5em;
     border-bottom: 1px solid #ddd;
+    h2.entry-title {
+      font-size: 28px * @hhm; 
+    }
   }
   .homepage-top-rail-right .widget {
     margin-bottom: 0;
