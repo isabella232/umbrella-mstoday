@@ -91,10 +91,15 @@ add_action( 'largo_loop_after_post_x', 'mstoday_interstitial', 10, 2 );
  */
 function mstoday_remove_category_header_on_this_one_specific_category() {
 	$qo = get_queried_object();
-	if ( is_main_query() && is_category() && $qo->slug === 'around-the-state' ) {
+	if ( is_main_query() && is_category() &&
+		( 'around-the-state' === $qo->slug || 'mississippi-roundup' === $qo->slug )
+	) {
 		remove_action( 'pre_get_posts', 'largo_category_archive_posts', 15 );
 	} else {
-		// put this back if it's not any of the above; we might need this perhaps maybe
+		// if the case is not any of the above, make sure that this is enabled
+		// because otherwise all other category pages will be messed up
+		//
+		// this may cause an issue if they ever check the box for hide_category_featured
 		add_action( 'pre_get_posts', 'largo_category_archive_posts', 15 );
 	}
 }
