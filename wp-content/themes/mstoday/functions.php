@@ -131,6 +131,9 @@ function mstoday_shortcut_icons() {
 		<link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_180.png" />
 		<link rel="apple-touch-icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_1024.png" />
 		<meta name="apple-mobile-web-app-title" content="Mississippi Today">
+
+		<link rel="icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_1024.png" />
+		<meta name="mobile-web-app-capable" content="yes">
 	<?php
 }
 
