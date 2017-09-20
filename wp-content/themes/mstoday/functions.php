@@ -104,3 +104,36 @@ function mstoday_remove_category_header_on_this_one_specific_category() {
 	}
 }
 add_action( 'pre_get_posts', 'mstoday_remove_category_header_on_this_one_specific_category', 1 );
+
+/**
+ * Remove Largo's default shortcut icons so that we may add our own specific ones
+ */
+function mstoday_largo_shortcut_icons() {
+	remove_action( 'wp_head', 'largo_shortcut_icons', 10 );
+	add_action( 'wp_head', 'mstoday_shortcut_icons', 10 );
+}
+add_action( 'wp_head', 'mstoday_largo_shortcut_icons', 9 );
+/**
+ * Add new specific touch icons
+ */
+function mstoday_shortcut_icons() {
+	if ( of_get_option( 'favicon' ) ) {
+		echo '<link rel="shortcut icon" href="' . esc_url( of_get_option( 'favicon' ) ) . '"/>';
+	}
+
+	?>
+		<link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_57.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_72.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_114.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_152.png" />
+		<link rel="apple-touch-icon" sizes="167x167" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_167.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_180.png" />
+		<link rel="apple-touch-icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_1024.png" />
+		<meta name="apple-mobile-web-app-title" content="Mississippi Today">
+
+		<link rel="icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_1024.png" />
+		<meta name="mobile-web-app-capable" content="yes">
+	<?php
+}
+
