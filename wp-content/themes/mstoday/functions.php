@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Includes
@@ -6,6 +6,7 @@
 $includes = array(
 	'/homepages/homepage.php',
 	'/inc/DDCPC.php',
+	'/inc/post-tags.php',
 );
 // Perform load
 foreach ( $includes as $include ) {
@@ -38,7 +39,7 @@ function mstoday_register_sidebars() {
 		'before_title' 	=> '<h3 class="widgettitle">',
 		'after_title' 	=> '</h3>',
 	);
-	
+
 	$sidebars[] = array(
 		'name' => __( 'Signup Interstitial', 'mstoday' ),
 		'id' => 'signup-interstitial',
@@ -48,7 +49,7 @@ function mstoday_register_sidebars() {
 		'before_title' 	=> '<h3 class="widgettitle">',
 		'after_title' 	=> '</h3>',
 	);
-	
+
 	$sidebars[] = array(
 		'name' => __( 'Donate Interstitial', 'mstoday' ),
 		'id' => 'donate-interstitial',
@@ -137,4 +138,3 @@ function mstoday_shortcut_icons() {
 		<meta name="mobile-web-app-capable" content="yes">
 	<?php
 }
-
