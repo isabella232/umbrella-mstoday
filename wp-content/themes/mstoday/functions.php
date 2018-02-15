@@ -4,7 +4,8 @@
  * Includes
  */
 $includes = array(
-	'/homepages/homepage.php'
+	'/homepages/homepage.php',
+	'/inc/DDCPC.php',
 );
 // Perform load
 foreach ( $includes as $include ) {
