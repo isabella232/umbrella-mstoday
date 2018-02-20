@@ -10,7 +10,7 @@ function zone_homepage_top_story() {
 
 	ob_start(); ?>
 	
-	<article id="post-<?php echo $topstory->ID; ?>" <?php post_class('clearfix'); ?>>
+	<article id="post-<?php echo $topstory->ID; ?>" <?php post_class( 'clearfix', $topstory->ID ); ?>>
 
 		<header>
 			<div class="hero span12 <?php largo_hero_class( $topstory->ID ); ?>">
@@ -72,7 +72,7 @@ function zone_homepage_second_story() {
 	
 	ob_start();
 	?>
-		<article id="post-<?php echo $featured->ID; ?>" <?php post_class( 'clearfix' ); ?>>
+		<article id="post-<?php echo $featured->ID; ?>" <?php post_class( 'clearfix', $featured->ID ); ?>>
 			<header>
 				<div class="hero span12 <?php largo_hero_class( $featured->ID ); ?>">
 				<?php

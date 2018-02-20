@@ -5,6 +5,7 @@
  */
 $includes = array(
 	'/homepages/homepage.php',
+	'/inc/DDCPC.php',
 	'/inc/post-tags.php',
 );
 // Perform load
