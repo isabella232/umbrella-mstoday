@@ -7,6 +7,7 @@ $includes = array(
 	'/homepages/homepage.php',
 	'/inc/DDCPC.php',
 	'/inc/post-tags.php',
+	'/inc/open-graph.php',
 );
 // Perform load
 foreach ( $includes as $include ) {
