@@ -7,6 +7,7 @@
  * Zero out the OpenGraph tags produced by Largo if Yoast is active
  *
  * @link https://github.com/INN/largo/issues/1437
+ * @link https://wordpress.org/plugins/wordpress-seo/
  * @since Largo 0.5.5.4
  * @since Yoast/wordpress-seo 7.6.1
  * @since WordPress 4.9.6
