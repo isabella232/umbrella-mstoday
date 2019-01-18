@@ -9,7 +9,7 @@
 
 <div class="clearfix"></div>
 
-<div class="homepage-featured-row">
+<div class="homepage-featured-row row-fluid">
 	<?php echo $homepage_second_story; ?>
 	<div class="clearfix"></div>
 </div>

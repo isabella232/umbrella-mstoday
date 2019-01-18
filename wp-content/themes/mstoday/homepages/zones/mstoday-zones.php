@@ -87,25 +87,27 @@ function zone_homepage_second_story() {
 		$thumbnail = get_the_post_thumbnail( $featured->ID, 'full' ); 
 		$excerpt = largo_excerpt( $featured, 2, false, '', false );
 	?>
-		<article id="post-<?php echo $featured->ID; ?>" <?php post_class( 'clearfix', $featured->ID ); ?>>
-			<header>
-				<div class="hero span12 <?php largo_hero_class( $featured->ID ); ?>">
-				<?php
-					if ( $thumbnail ) {
-						echo( '<a href="' . get_permalink( $featured->ID ) . '" rel="bookmark">');
-						echo $thumbnail;
-						echo('</a>');
-					}
-				?>
+		<div class="span4">
+			<article id="post-<?php echo $featured->ID; ?>" <?php post_class( 'clearfix', $featured->ID ); ?>>
+				<header>
+					<div class="hero span12 <?php largo_hero_class( $featured->ID ); ?>">
+					<?php
+						if ( $thumbnail ) {
+							echo( '<a href="' . get_permalink( $featured->ID ) . '" rel="bookmark">');
+							echo $thumbnail;
+							echo('</a>');
+						}
+					?>
+					</div>
+				</header>
+				
+				<div class="entry-content">
+					<h5 class="top-tag"><?php largo_top_term( array( 'post'=> $featured->ID ) ); ?></h5>
+					<h2 class="entry-title"><a href="<?php echo esc_url( get_permalink( $featured->ID ) ); ?>"><?php echo $featured->post_title; ?></a></h3>
+					<h5 class="byline"><?php largo_byline( true, true, $featured ); ?></h5>
 				</div>
-			</header>
-			
-			<div class="entry-content">
-				<h5 class="top-tag"><?php largo_top_term( array( 'post'=> $featured->ID ) ); ?></h5>
-				<h2 class="entry-title"><a href="<?php echo esc_url( get_permalink( $featured->ID ) ); ?>"><?php echo $featured->post_title; ?></a></h3>
-				<h5 class="byline"><?php largo_byline( true, true, $featured ); ?></h5>
-			</div>
-		</article>
+			</article>
+		</div>
 	<?php
 	}
 	wp_reset_postdata();
