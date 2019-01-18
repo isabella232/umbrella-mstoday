@@ -1,6 +1,6 @@
 <?php global $shown_ids; ?>
 
-<div class="homepage-top-rail-right span4">
+<div class="homepage-upper-left span4">
 	<?php echo $homepage_featured_projects_widget; ?>
 </div>
 <div class="homepage-top-post span8">
@@ -9,10 +9,8 @@
 
 <div class="clearfix"></div>
 
-<div class="homepage-top-rail">
-	<div class="homepage-top-rail-left">
-		<?php echo $homepage_second_story; ?>
-	</div>
+<div class="homepage-featured-row">
+	<?php echo $homepage_second_story; ?>
 	<div class="clearfix"></div>
 </div>
 
