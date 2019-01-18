@@ -37,7 +37,7 @@ a {
 .btn-primary,
 .btn-primary:hover {
   .btn-styles;
-  background-color: @pink;
+  background-color: @orange;
 }
 
 //load more posts button
@@ -224,24 +224,35 @@ body.normal.page .entry-header {
   }
 }
 // pullquotes
-.type-pull-quote {
-  color: @teal;
-  font-weight: 700;
+.wp-block-quote, .type-pull-quote {
+  border-left: 5px solid @teal;
+  p, cite {
+    color: @lightgray;
+    font-weight: 700;
+    font-family:@headerfont;
+  }
+  p {
+    font-size:1.25rem;
+    margin-top:0;
+  }
+  cite {
+    font-size:1rem;
+  }
   &.align-left {
-    border-right: 5px solid @dkblue;
+    border-right: 5px solid @teal;
     padding-right: 10px;
   }
   &.align-right {
-	border-left: 5px solid @dkblue;
+	border-left: 5px solid @teal;
 	padding-left: 10px;
   }
   &.align-center {
     text-align: center;
-    border-top: 5px solid @dkblue;
-    border-bottom: 5px solid @dkblue;
+    border-top: 5px solid @teal;
+    border-bottom: 5px solid @teal;
     padding: 10px 0;
     &.half {
-	  width: 100%;
+	   width: 100%;
     }
   }
   &:before,
@@ -256,8 +267,8 @@ body.normal.page .entry-header {
       margin-bottom: 24px;
       text-align: center;
       border: none;
-      border-top: 5px solid @dkblue;
-      border-bottom: 5px solid @dkblue;
+      border-top: 5px solid @teal;
+      border-bottom: 5px solid @teal;
     }
   }
 }
