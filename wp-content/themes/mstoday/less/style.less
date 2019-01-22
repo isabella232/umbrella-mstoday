@@ -27,6 +27,11 @@ a {
   }
 }
 
+p.wp-caption-text, p.wp-media-credit {
+  font-family:@headerfont;
+  font-weight:400;
+}
+
 
 
 .btn,
@@ -174,8 +179,13 @@ a {
 #header-search .btn {
   padding: 4px 10px;
 }
-.donate-btn {
+.donate-btn,
+.navbar.sticky-navbar .nav-right #header-extras .donate a span {
   background-color: @orange;
+  &:hover {
+    background-color: @orange;
+    opacity: 0.9;
+  }
 }
 
 h5.byline {
@@ -212,8 +222,8 @@ h5.top-tag a,
 .entry-content h5.top-tag a {
   font-family: @headerfont;
   color: @orange;
-  letter-spacing: 0.0625em;
-  font-weight: 400;
+  letter-spacing: 0.075em;
+  font-weight: 700;
 
 }
 body.normal.page .entry-header {
