@@ -1,10 +1,12 @@
 <?php global $shown_ids; ?>
 
-<div class="homepage-upper-left span4">
-	<?php echo $homepage_featured_projects_widget; ?>
-</div>
-<div class="homepage-top-post span8">
-	<?php echo $homepage_top_story; ?>
+<div class="homepage-top row-fluid">
+	<div class="homepage-upper-left span4">
+		<?php echo $homepage_featured_projects_widget; ?>
+	</div>
+	<div class="homepage-top-post span8">
+		<?php echo $homepage_top_story; ?>
+	</div>
 </div>
 
 <div class="clearfix"></div>

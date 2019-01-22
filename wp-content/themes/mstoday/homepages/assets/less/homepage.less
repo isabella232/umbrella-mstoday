@@ -38,6 +38,25 @@
   }
 }
 
+@media (max-width:680px) {
+  .homepage-top {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .homepage-featured-row {
+    .span4 {
+      width:100%;
+      margin-left:0;
+    }
+    .hero.is-image {
+      float: right;
+      max-width: 30%;
+      margin: 0 0 10px 20px;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .homepage-featured-row {
     padding-bottom: 0;
