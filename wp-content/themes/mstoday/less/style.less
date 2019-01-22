@@ -1,5 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i';
-@import 'https://fonts.googleapis.com/css?family=Archivo+Narrow:400,700';
+@import 'https://use.typekit.net/uvz4wvc.css';
 @import "_vars.less";
 @import "_mixins.less";
 @import "_forms.less";
@@ -8,7 +7,11 @@
 
 /* Typography */
 body {
-  font-family: @bodyfont;
+  color:@darkgray;
+
+  p {
+    font-family: @bodyfont;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -17,26 +20,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: black;
-  font-family: @headerfont;
+  color:black;
+
+  &:hover {
+    color:@teal; 
+  }
 }
 
+
+
 .btn,
-.btn:hover {
+.btn:hover,
+#submit,
+#submit:hover {
   .btn-styles;
-  background-color: @ltblue;
+  background-color: @teal;
 }
 .btn-primary,
 .btn-primary:hover {
   .btn-styles;
-  background-color: @red;
+  background-color: @orange;
 }
 
 //load more posts button
 .pager a,
 .pager a:hover {
   .btn-styles;
-  background-color: @ltblue;
+  background-color: @lightteal;
   padding: 20px;
 }
 
@@ -49,7 +59,7 @@ a {
 	  content: "";
 	  display: block;
 	  height: 5px;
-	  background-color: @red;
+	  background-color: @teal;
 	  max-width: 50%;
 	  margin: 0.25em auto 0.75em;
 	}
@@ -80,7 +90,7 @@ a {
     list-style: none;
     > li > a {
       color: white;
-      font-family: @bodyfont;
+      font-family: @headerfont;
       text-transform: uppercase;
       font-weight: 400;
       font-size: 1em;
@@ -93,7 +103,7 @@ a {
       text-decoration: none;
       line-height: 2.8125em;
       &:hover {
-        background-color: @red;
+        background-color: @teal;
         border: none;
       }
     }
@@ -141,7 +151,7 @@ a {
     }
     button {
 	  .btn-styles;
-	  background-color: @red;
+	  background-color: @orange;
     }
   }
   a:hover {
@@ -165,7 +175,7 @@ a {
   padding: 4px 10px;
 }
 .donate-btn {
-  background-color: @red;
+  background-color: @orange;
 }
 
 h5.byline {
@@ -174,7 +184,7 @@ h5.byline {
   letter-spacing: 0.03125em;
 }
 .byline a {
-  color: @dkblue;
+  color: @teal;
 }
 .byline .avatar {
   display: none;
@@ -200,8 +210,8 @@ h5.byline {
 h5.top-tag a,
 .widget h5.top-tag a,
 .entry-content h5.top-tag a {
-  font-family: @bodyfont;
-  color: @dkblue;
+  font-family: @headerfont;
+  color: @orange;
   letter-spacing: 0.0625em;
   font-weight: 400;
 
@@ -216,24 +226,35 @@ body.normal.page .entry-header {
   }
 }
 // pullquotes
-.type-pull-quote {
-  color: @red;
-  font-weight: 700;
+.wp-block-quote, .type-pull-quote {
+  border-left: 5px solid @teal;
+  p, cite {
+    color: @lightgray;
+    font-weight: 700;
+    font-family:@headerfont;
+  }
+  p {
+    font-size:1.25rem;
+    margin-top:0;
+  }
+  cite {
+    font-size:1rem;
+  }
   &.align-left {
-    border-right: 5px solid @dkblue;
+    border-right: 5px solid @teal;
     padding-right: 10px;
   }
   &.align-right {
-	border-left: 5px solid @dkblue;
+	border-left: 5px solid @teal;
 	padding-left: 10px;
   }
   &.align-center {
     text-align: center;
-    border-top: 5px solid @dkblue;
-    border-bottom: 5px solid @dkblue;
+    border-top: 5px solid @teal;
+    border-bottom: 5px solid @teal;
     padding: 10px 0;
     &.half {
-	  width: 100%;
+	   width: 100%;
     }
   }
   &:before,
@@ -248,9 +269,42 @@ body.normal.page .entry-header {
       margin-bottom: 24px;
       text-align: center;
       border: none;
-      border-top: 5px solid @dkblue;
-      border-bottom: 5px solid @dkblue;
+      border-top: 5px solid @teal;
+      border-bottom: 5px solid @teal;
     }
+  }
+}
+
+h1.entry-title {
+    font-size: 40px;
+}
+
+.entry-content {
+  p a {
+    border-bottom: 1px solid @teal;
+    box-shadow: inset 0 -2px 0 0 @teal;
+    color:black;
+    text-decoration:none;
+
+    &:hover {
+      border-bottom: 1px solid @teal;
+      box-shadow: inset 0 -4px 0 0 @teal;
+      transition: all 0.2s ease;
+      color:black;
+      text-decoration:none;
+    }
+  }
+  h2 {
+    font-size:36px;
+  }
+  h3 {
+    font-size:30px;
+    font-weight:400;
+  }
+  h4 {
+    font-size:20px;
+    text-transform: uppercase;
+    border-bottom: 1px dotted @lightgray;
   }
 }
 
@@ -258,14 +312,14 @@ body.normal.page .entry-header {
 #site-footer {
   p,
   li {
-    font-family: @bodyfont;
+    font-family: @headerfont;
   }
   .textwidget a,
   .widget_nav_menu a,
   .widgettitle,
   li.menu-label {
     color: #ababab;
-    font-family: @bodyfont;
+    font-family: @headerfont;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.09375em;
@@ -350,14 +404,14 @@ body.normal.page .entry-header {
 }
 
 #alert-container aside {
-    border: 4px solid #083fa0; /*##368fda*/
+    border: 4px solid @teal; /*##368fda*/
     margin-top:1em;
     padding-bottom:1em;
     text-align:center;
 }
 
 #alert-container aside h3.widgettitle {
-	background-color: #083fa0;
+	background-color: @teal;
 	color:#fff;
     padding:.5em 1em;
     margin:0;
