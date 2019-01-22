@@ -1,21 +1,19 @@
 <?php global $shown_ids; ?>
 
-<div class="homepage-top-post">
-	<?php echo $homepage_top_story; ?>
-</div>
-<div class="clearfix"></div>
-<div class="homepage-top-rail">
-
-	<div class="homepage-top-rail-left">
-		<?php echo $homepage_second_story; ?>
-	</div>
-
-	<div class="homepage-top-rail-right">
+<div class="homepage-top row-fluid">
+	<div class="homepage-upper-left span4">
 		<?php echo $homepage_featured_projects_widget; ?>
 	</div>
-	
-	<div class="clearfix"></div>
+	<div class="homepage-top-post span8">
+		<?php echo $homepage_top_story; ?>
+	</div>
+</div>
 
+<div class="clearfix"></div>
+
+<div class="homepage-featured-row row-fluid">
+	<?php echo $homepage_second_story; ?>
+	<div class="clearfix"></div>
 </div>
 
 <div class="homepage-river">

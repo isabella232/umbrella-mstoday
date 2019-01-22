@@ -50,13 +50,31 @@ function zone_homepage_top_story() {
 }
 
 function zone_homepage_second_story() {
-	global $shown_ids;
-	
-	$featured_stories = largo_home_featured_stories();
+		global $shown_ids;
 
-	if ( count( $featured_stories ) < 1) {
+	$max = 3;
+
+	/**
+	 * Filter the maximum number of posts to show in the featured stories list
+	 * on the HomepageSingleWithFeatured homepage template.
+	 *
+	 * This is used in the query for the series list of posts in the same series
+	 * as the main feature. This is the maximum number of posts that will display
+	 * in the list.
+	 *
+	 * Default value is 3.
+	 *
+	 * @since 0.5.1
+	 *
+	 * @param int  $var minimum number of posts that can show.
+	 */
+	$max = apply_filters( 'largo_homepage_feature_stories_list_maximum', $max );
+
+	ob_start();
+	$featured_stories = largo_home_featured_stories( $max );
+	if ( count( $featured_stories ) < 3) {
 		$recent_stories = wp_get_recent_posts( array(
-			'numberposts' => 1,
+			'numberposts' => 3,
 			'post__not_in' => $shown_ids,
 			'post_type' => 'post',
 			'post_status' => 'publish',
@@ -64,35 +82,34 @@ function zone_homepage_second_story() {
 
 		$featured_stories = array_merge( $featured_stories, $recent_stories );
 	}
-
-	$featured = $featured_stories[0];
-	$shown_ids[] = $featured->ID;
-	$thumbnail = get_the_post_thumbnail( $featured->ID, 'full' ); 
-	$excerpt = largo_excerpt( $featured, 2, false, '', false );
-	
-	ob_start();
+	foreach ( $featured_stories as $featured ) {
+		$shown_ids[] = $featured->ID;
+		$thumbnail = get_the_post_thumbnail( $featured->ID, 'full' ); 
+		$excerpt = largo_excerpt( $featured, 2, false, '', false );
 	?>
-		<article id="post-<?php echo $featured->ID; ?>" <?php post_class( 'clearfix', $featured->ID ); ?>>
-			<header>
-				<div class="hero span12 <?php largo_hero_class( $featured->ID ); ?>">
-				<?php
-					if ( $thumbnail ) {
-						echo( '<a href="' . get_permalink( $featured->ID ) . '" rel="bookmark">');
-						echo $thumbnail;
-						echo('</a>');
-					}
-				?>
+		<div class="span4">
+			<article id="post-<?php echo $featured->ID; ?>" <?php post_class( 'clearfix', $featured->ID ); ?>>
+				<header>
+					<div class="hero span12 <?php largo_hero_class( $featured->ID ); ?>">
+					<?php
+						if ( $thumbnail ) {
+							echo( '<a href="' . get_permalink( $featured->ID ) . '" rel="bookmark">');
+							echo $thumbnail;
+							echo('</a>');
+						}
+					?>
+					</div>
+				</header>
+				
+				<div class="entry-content">
+					<h5 class="top-tag"><?php largo_top_term( array( 'post'=> $featured->ID ) ); ?></h5>
+					<h2 class="entry-title"><a href="<?php echo esc_url( get_permalink( $featured->ID ) ); ?>"><?php echo $featured->post_title; ?></a></h3>
+					<h5 class="byline"><?php largo_byline( true, true, $featured ); ?></h5>
 				</div>
-			</header>
-			
-			<div class="entry-content">
-				<h5 class="top-tag"><?php largo_top_term( array( 'post'=> $featured->ID ) ); ?></h5>
-				<h2 class="entry-title"><a href="<?php echo esc_url( get_permalink( $featured->ID ) ); ?>"><?php echo $featured->post_title; ?></a></h3>
-				<h5 class="byline"><?php largo_byline( true, true, $featured ); ?></h5>
-			</div>
-		</article>
+			</article>
+		</div>
 	<?php
-
+	}
 	wp_reset_postdata();
 	return ob_get_clean();
 }

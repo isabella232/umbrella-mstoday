@@ -2,13 +2,23 @@
 @homepageheadlinemodifier: 1.2;
 @hhm: @homepageheadlinemodifier;
 
-.homepage-top-rail {
+.home .entry-content.with-hero {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+// desktop font size increase, by request
+.homepage-top-post h2 {
+  font-size: @hhm * 2em;
+}
+
+.homepage-featured-row {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 24px 0;
   margin-bottom: 48px;
-}
-.homepage-top-rail-left {
+
   .entry-content.with-hero {
     margin: 0;
     padding: 0;
@@ -24,51 +34,31 @@
   h2.entry-title {
     line-height: 1.165;
     margin-bottom: 12px;
+    font-size: 20px * @hhm; 
   }
 }
-.homepage-top-rail-right .widget {
-  padding-top: 0;
-}
-@media (min-width: 500px) {
-  .homepage-top-rail-left {
-    max-width: 45%;
-    float: left;
-    padding-right: 4.75%;
-    border-right: 1px solid #ddd;
-  }
-  .homepage-top-rail-right {
-    max-width: 45%;
-    padding-left: 4.75%;
-    border-left: 1px solid #ddd;
-    float: left;
-    position: relative;
-    left: -1px;
+
+@media (max-width:680px) {
+  .homepage-top {
+    display: flex;
+    flex-direction: column-reverse;
   }
 
-  // desktop font size increase, by request
-  .stories h2.entry-title,
-  .homepage-top-post h2 {
-    font-size: @hhm * 2em;
-  }
-  .homepage-top-rail-right .widget {
-    h5 {
-      font-size: 20px * @hhm;
+  .homepage-featured-row {
+    .span4 {
+      width:100%;
+      margin-left:0;
     }
-  }
-  .homepage-top-rail-left .widget {
-    h2 {
-      font-size: 28px * @hhm;
+    .hero.is-image {
+      float: right;
+      max-width: 30%;
+      margin: 0 0 10px 20px;
     }
   }
 }
+
 @media (max-width: 500px) {
-  .homepage-top-rail {
-    margin-bottom: 24px;
-  }
-  .homepage-top-post article {
-    margin-bottom: 12px;
-  }
-  .homepage-top-rail-left {
+  .homepage-featured-row {
     padding-bottom: 0;
     margin-bottom: 1.5em;
     border-bottom: 1px solid #ddd;
@@ -76,8 +66,8 @@
       font-size: 28px * @hhm; 
     }
   }
-  .homepage-top-rail-right .widget {
-    margin-bottom: 0;
+  .homepage-top-post article {
+    margin-bottom: 12px;
   }
 
   // Classes added through /inc/DDCPC.php
@@ -106,7 +96,7 @@
 }
 
 .homepage-top-post,
-.homepage-top-rail-left,
+.homepage-featured-row,
 .homepage-river {
   .entry-content h5.byline {
     font-size: 0.8125em * @hhm;

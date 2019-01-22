@@ -472,6 +472,11 @@ h1.entry-title {
   .home .entry-content .entry-title {
     font-size: 1.85em;
   }
+  .home .homepage-upper-left,
+  .home .homepage-top-post {
+    margin-left: 0;
+    width: 100%;
+  }
   .load-more {
     width: 100%;
   }
