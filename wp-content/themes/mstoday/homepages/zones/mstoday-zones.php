@@ -84,7 +84,7 @@ function zone_homepage_second_story() {
 	}
 	foreach ( $featured_stories as $featured ) {
 		$shown_ids[] = $featured->ID;
-		$thumbnail = get_the_post_thumbnail( $featured->ID, 'full' ); 
+		$thumbnail = get_the_post_thumbnail( $featured->ID, 'rect_thumb' ); 
 		$excerpt = largo_excerpt( $featured, 2, false, '', false );
 	?>
 		<div class="span4">
