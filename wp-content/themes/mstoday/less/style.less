@@ -292,10 +292,12 @@ h1.entry-title {
 
 .entry-content {
   .alignfull, .alignwide, &>aside {
-    width: 100vw;
     max-width: unset;
     margin-left: ~"calc(-2 * 15.021276594%)";
     margin-right: ~"calc(-2 * 15.021276594%)";
+    @media (max-width:1250px) {
+      width: 100vw;
+    }
     @media (max-width:979px) {
       margin-left: ~"calc(-2 * 5.382978723%)";
       margin-right: ~"calc(-2 * 5.382978723%)";
