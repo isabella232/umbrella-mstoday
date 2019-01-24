@@ -139,3 +139,12 @@ function mstoday_shortcut_icons() {
 		<meta name="mobile-web-app-capable" content="yes">
 	<?php
 }
+
+
+/**
+ * Register support for Gutenberg wide images in your theme
+ */
+function mstoday_add_wide_image_support() {
+  add_theme_support( 'align-wide' );
+}
+add_action( 'after_setup_theme', 'mstoday_add_wide_image_support' );
