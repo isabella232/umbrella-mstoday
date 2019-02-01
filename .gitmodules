@@ -1,9 +1,6 @@
-[submodule "tools"]
-	path = tools
-	url = git@github.com:INN/deploy-tools.git
 [submodule "wp-content/themes/largo"]
 	path = wp-content/themes/largo
 	url = https://github.com/INN/largo.git
 [submodule "wp-content/plugins/developer-driven-custom-post-classes"]
 	path = wp-content/plugins/developer-driven-custom-post-classes
-	url = git@github.com:INN/developer-driven-custom-post-classes.git
+	url = https://github.com/INN/developer-driven-custom-post-classes.git
