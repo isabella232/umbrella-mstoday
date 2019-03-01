@@ -125,17 +125,17 @@ function mstoday_shortcut_icons() {
 	}
 
 	?>
-		<link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_57.png" />
-		<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_72.png" />
-		<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_114.png" />
-		<link rel="apple-touch-icon" sizes="144x144" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_144.png" />
-		<link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_152.png" />
-		<link rel="apple-touch-icon" sizes="167x167" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_167.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_180.png" />
-		<link rel="apple-touch-icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_1024.png" />
+		<link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_57.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_72.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_114.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_144.png" />
+		<link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_152.png" />
+		<link rel="apple-touch-icon" sizes="167x167" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_167.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_180.png" />
+		<link rel="apple-touch-icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_1024.png" />
 		<meta name="apple-mobile-web-app-title" content="Mississippi Today">
 
-		<link rel="icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/MSToday_1024.png" />
+		<link rel="icon" sizes="1024x1024" href="<?php echo get_stylesheet_directory_uri(); ?>/img/mstoday_new_1024.png" />
 		<meta name="mobile-web-app-capable" content="yes">
 	<?php
 }
