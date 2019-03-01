@@ -17,11 +17,6 @@ class MSTodayHomepage extends Homepage {
 			),
 			'prominenceTerms' => array(
 				array(
-					'name' 			=> __( 'Top Story', 'largo' ),
-					'description' 	=> __( 'Add this label to a post to make it the top story on the homepage', 'largo' ),
-					'slug' 			=> 'top-story'
-				),
-				array(
 					'name' 			=> __( 'Exclude From Homepage', 'largo' ),
 					'description' 	=> __( 'Stories that should be excluded from the main river of stories on the homepage', 'largo' ),
 					'slug' 			=> 'homepage-exclude'
