@@ -36,7 +36,6 @@ function mstoday_blank_page_options_filter( $value, $option ) {
 		$value['main_nav_hide_article'] = '1';
 		$value['sticky_nav_display'] = '1';
 	}
-	error_log(var_export( $value, true));
 	return $value;
 }
 
