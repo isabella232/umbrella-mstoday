@@ -12,6 +12,8 @@ add_filter( 'body_class', function( $classes ) {
 	return $classes;
 } );
 
+add_action( 'wp_head', 'mstoday_blank_page_largo_floating_social_buttons' );
+
 get_header();
 ?>
 
@@ -21,9 +23,7 @@ get_header();
 
 			$shown_ids[] = get_the_ID();
 
-			$partial = ( is_page() ) ? 'page' : 'single';
-
-			get_template_part( 'partials/content', $partial );
+			get_template_part( 'partials/content', 'blank' );
 
 			if ( $partial === 'single' ) {
 
