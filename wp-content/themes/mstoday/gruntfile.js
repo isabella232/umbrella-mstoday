@@ -3,11 +3,11 @@ module.exports = function(grunt) {
 
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
-    
+
     // Find what the current theme's directory is, relative to the WordPress root
     var path = process.cwd();
     path = path.replace(/^[\s\S]+\/wp-content/, "\/wp-content");
-    
+
     var CSS_LESS_FILES = {
         'css/child.css': 'less/style.less',
         'homepages/assets/css/homepage.css': 'homepages/assets/less/homepage.less',
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                 ]
             },
         },
-        
+
         cssmin: {
             target: {
                 options: {
@@ -65,4 +65,6 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
+
+    grunt.registerTask('default', ['less', 'cssmin']);
 }
