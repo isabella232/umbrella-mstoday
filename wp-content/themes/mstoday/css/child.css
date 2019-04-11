@@ -566,4 +566,15 @@ h1.entry-title {
 #floating-social-buttons .linkedin {
   background-color: #fff;
 }
+body.blank-page #page {
+  padding-top: 56px;
+}
+@media (max-width: 768px) {
+  body.blank-page #page {
+    padding-top: 0;
+  }
+}
+body.blank-page #main {
+  margin-top: 0;
+}
 /*# sourceMappingURL=css/child.css.map */

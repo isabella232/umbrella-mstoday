@@ -465,3 +465,16 @@ h1.entry-title {
 #floating-social-buttons .linkedin {
    background-color: #fff;
 }
+
+body.blank-page {
+	#page {
+		padding-top: 56px;
+		@media (max-width: 768px) {
+			// because the sticky nav JS leaves space for this case in this breakpoint case
+			padding-top: 0;
+		}
+	}
+	#main {
+		margin-top: 0;
+	}
+}
