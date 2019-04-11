@@ -13,6 +13,7 @@ add_filter( 'body_class', function( $classes ) {
 } );
 
 add_action( 'wp_head', 'mstoday_blank_page_largo_floating_social_buttons' );
+add_action( 'wp_enqueue_scripts', 'mstoday_blank_page_largo_enqueue_js', 11 ); // has to come after largo_enqueue_js. Does result in var Largo being printed on the page twice - ugh - but it works.
 
 get_header();
 ?>
