@@ -406,31 +406,23 @@ h1.entry-title {
     font-size: 30px;
   }
 }
-.entry-content .alignfull,
-.entry-content .alignwide,
 .entry-content > aside {
   max-width: unset;
   margin-left: calc(-2 * 15.021276594%);
   margin-right: calc(-2 * 15.021276594%);
 }
 @media (max-width: 1250px) {
-  .entry-content .alignfull,
-  .entry-content .alignwide,
   .entry-content > aside {
     width: 100vw;
   }
 }
 @media (max-width: 979px) {
-  .entry-content .alignfull,
-  .entry-content .alignwide,
   .entry-content > aside {
     margin-left: calc(-2 * 5.382978723%);
     margin-right: calc(-2 * 5.382978723%);
   }
 }
 @media (max-width: 529px) {
-  .entry-content .alignfull,
-  .entry-content .alignwide,
   .entry-content > aside {
     margin-left: 0;
     margin-right: 0;
