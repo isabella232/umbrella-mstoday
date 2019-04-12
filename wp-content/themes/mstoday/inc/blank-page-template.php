@@ -55,10 +55,9 @@ function mstoday_blank_page_options_filter( $value, $option ) {
 function mstoday_blank_page_options_filter_register() {
 	$config = get_option( 'optionsframework' );
 	if ( ! isset( $config['id'] ) ) {
-		error_log(var_export( 'huh', true));
 		return false;
 	}
 	$filter = 'option_' . $config['id'];
 
-	add_filter( $filter, 'mstoday_blank_page_options_filter', 10, 2 );
+	return add_filter( $filter, 'mstoday_blank_page_options_filter', 10, 2 );
 }
