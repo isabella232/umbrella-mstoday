@@ -14,6 +14,7 @@ add_filter( 'body_class', function( $classes ) {
 
 add_action( 'wp_head', 'mstoday_blank_page_largo_floating_social_buttons' );
 add_action( 'wp_head', 'mstoday_blank_page_options_filter_register', 1 );
+add_action( 'wp_enqueue_scripts', 'mstoday_blank_page_largo_nav_js', 11 );
 
 get_header();
 ?>

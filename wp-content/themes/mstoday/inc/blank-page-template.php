@@ -61,3 +61,22 @@ function mstoday_blank_page_options_filter_register() {
 
 	return add_filter( $filter, 'mstoday_blank_page_options_filter', 10, 2 );
 }
+
+/**
+ * Replace Largo's sticky nav js with a copy that changes the sticky nav behavior
+ *
+ * @see single-blank.php
+ * @link https://github.com/INN/umbrella-mstoday/issues/32
+ */
+function mstoday_blank_page_largo_nav_js() {
+	wp_dequeue_script( 'largo-navigation' );
+	wp_deregister_script( 'largo-navigation' );
+
+	wp_enqueue_script(
+		'largo-navigation',
+		get_stylesheet_directory_uri() . '/js/navigation.js',
+		array( 'largoCore' ),
+		filemtime( get_stylesheet_directory() . '/js/navigation.js' ),
+		true
+	);
+}
