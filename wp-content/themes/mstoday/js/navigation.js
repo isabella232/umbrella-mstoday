@@ -38,6 +38,7 @@
 
     // Sticky nav on small viewports
     this.responsiveNavigation();
+    this.stickyNavEl.addClass('show');
 
     return this;
   };
@@ -78,85 +79,15 @@
         self.stickyNavEl.addClass(idx);
     });
 
-    $(window).on('scroll', this.stickyNavScrollCallback.bind(this));
     $(window).on('resize', this.stickyNavResizeCallback.bind(this));
 
     this.stickyNavResizeCallback();
     this.stickyNavSetOffset();
   };
 
-  // Hide the sticky nav if we're too close to the top of the page
-  Navigation.prototype.stickyNavScrollTopHide = function() {
-    if ($(window).scrollTop() <= this.mainEl.offset().top && this.mainNavEl.is(':visible')) {
-      this.stickyNavEl.removeClass('show');
-      clearTimeout(this.scrollTimeout);
-      return;
-    }
-  }
-
   Navigation.prototype.stickyNavResizeCallback = function() {
-    if (
-      this.windowwidth() <= 768 ||
-      ( Largo.sticky_nav_options.main_nav_hide_article && ($('body').hasClass('single') || $('body').hasClass('page')) )
-    ) {
-      this.stickyNavEl.addClass('show');
-      this.stickyNavEl.parent().css('height', this.stickyNavEl.outerHeight());
-    } else if (
-      Largo.sticky_nav_options.sticky_nav_display
-    ) {
-      this.stickyNavScrollTopHide();
-      this.stickyNavEl.parent().css('height', '');
-    } else {
-      this.stickyNavEl.parent().css('height', '');
-    }
     this.stickyNavSetOffset();
     this.stickyNavTransitionDone();
-  };
-
-  Navigation.prototype.stickyNavScrollCallback = function(event) {
-    if ($(window).scrollTop() < 0 || ($(window).scrollTop() + $(window).outerHeight()) >= $(document).outerHeight()) {
-      return;
-    }
-
-    var self = this,
-        direction = this.scrollDirection(),
-        callback, wait;
-
-    this.stickyNavScrollTopHide();
-
-    this.stickyNavSetOffset();
-
-    // Abort if the scroll direction is the same as it was, or if the page has not been scrolled.
-    if (this.previousScroll == direction || !this.previousScroll ) {
-      this.previousScroll = direction;
-      return;
-    }
-
-    clearTimeout(this.scrollTimeout);
-
-    if (direction == 'up') {
-      callback = this.stickyNavEl.addClass.bind(this.stickyNavEl, 'show'),
-      wait = 250;
-    } else if (direction == 'down') {
-      callback = this.stickyNavEl.removeClass.bind(this.stickyNavEl, 'show');
-      wait = 500;
-    }
-
-    this.scrollTimeout = setTimeout(callback, wait);
-    this.previousScroll = direction;
-  };
-
-  Navigation.prototype.scrollDirection = function() {
-    var scrollTop = $(window).scrollTop(),
-        direction;
-
-    if (scrollTop > this.scrollTop)
-      direction = 'down';
-    else
-      direction = 'up';
-
-    this.scrollTop = scrollTop;
-    return direction;
   };
 
   Navigation.prototype.stickyNavSetOffset = function() {
