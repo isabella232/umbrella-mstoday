@@ -294,7 +294,7 @@ h1.entry-title {
 }
 
 .entry-content {
-  .alignfull, .alignwide, &>aside {
+  &>aside {
     max-width: unset;
     margin-left: ~"calc(-2 * 15.021276594%)";
     margin-right: ~"calc(-2 * 15.021276594%)";
@@ -464,4 +464,17 @@ h1.entry-title {
 
 #floating-social-buttons .linkedin {
    background-color: #fff;
+}
+
+body.blank-page {
+	#page {
+		padding-top: 56px;
+		@media (max-width: 768px) {
+			// because the sticky nav JS leaves space for this case in this breakpoint case
+			padding-top: 0;
+		}
+	}
+	#main {
+		margin-top: 0;
+	}
 }

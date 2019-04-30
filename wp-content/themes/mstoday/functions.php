@@ -8,6 +8,7 @@ $includes = array(
 	'/inc/DDCPC.php',
 	'/inc/post-tags.php',
 	'/inc/open-graph.php',
+	'/inc/blank-page-template.php',
 );
 // Perform load
 foreach ( $includes as $include ) {
