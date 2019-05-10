@@ -8,12 +8,6 @@
 
 	<?php do_action('largo_before_post_header'); ?>
 
-	<header>
-
-		<h5 class="byline"><?php largo_byline( true, false, get_the_ID() ); ?></h5>
-
-	</header>
-
 	<?php largo_post_metadata( $post->ID ); ?>
 
 	<?php
