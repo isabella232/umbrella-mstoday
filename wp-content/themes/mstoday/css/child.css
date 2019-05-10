@@ -84,7 +84,7 @@ body {
   overflow-x: hidden;
 }
 body p {
-  font-family: utopia-std-display, Georgia, sans-serif;
+  font-family: Georgia, sans-serif;
 }
 body .post .entry-content p {
   letter-spacing: 0.3px;
