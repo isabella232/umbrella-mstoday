@@ -580,4 +580,12 @@ body.blank-page #page {
 body.blank-page #main {
   margin-top: 0;
 }
+body.blank-page #main header {
+  visibility: hidden;
+  margin: 0;
+  height: 0;
+}
+body.blank-page #main .largo-related-posts {
+  display: none;
+}
 /*# sourceMappingURL=css/child.css.map */
