@@ -22,7 +22,12 @@ function child_stylesheet() {
 	wp_dequeue_style( 'largo-child-styles' );
 
 	$suffix = ( LARGO_DEBUG )? '' : '.min';
-	wp_enqueue_style( 'mstoday', get_stylesheet_directory_uri() . '/css/child' . $suffix . '.css' );
+	wp_enqueue_style(
+		'mstoday',
+		get_stylesheet_directory_uri() . '/css/child' . $suffix . '.css',
+		array(),
+		filemtime( get_stylesheet_directory() . '/css/child' . $suffix . '.css' )
+	);
 
 }
 add_action( 'wp_enqueue_scripts', 'child_stylesheet', 20 );
