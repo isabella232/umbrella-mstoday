@@ -22,3 +22,28 @@ function mstoday_homepage_tax_query() {
 		),
 	);
 }
+
+/**
+ * filter LMP query on homepage by changing the config that is output for the LMP button
+ *
+ * This is the easiest way to affect what is loaded by the LMP button on the homepage.
+ * The other option would be filtering largo_lmp_args, on the WP_Query that LMP runs, but that lacks
+ * context that we have here.
+ *
+ * @uses mstoday_homepage_tax_query
+ * @param Array $config the LMP config
+ * @return Array the modified config
+ * @since Largo 0.5.5.3
+ * @since July 2019
+ * @filter largo_load_more_posts_json
+ * @see largo_load_more_posts_data
+ * @see partials/home-post-list.php
+ * @link https://secure.helpscout.net/conversation/904103699/3904/?folderId=1219602
+ */
+function mstoday_homepage_largo_load_more_posts_json( $config ) {
+	if ( is_home() ) {
+		$config['query']['tax_query'] = mstoday_homepage_tax_query();
+	}
+	return $config;
+}
+add_filter( 'largo_load_more_posts_json', 'mstoday_homepage_largo_load_more_posts_json' );
