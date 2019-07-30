@@ -9,6 +9,7 @@ $includes = array(
 	'/inc/post-tags.php',
 	'/inc/open-graph.php',
 	'/inc/blank-page-template.php',
+	'/inc/load-more-posts.php',
 );
 // Perform load
 foreach ( $includes as $include ) {
@@ -122,6 +123,7 @@ function mstoday_largo_shortcut_icons() {
 	add_action( 'wp_head', 'mstoday_shortcut_icons', 10 );
 }
 add_action( 'wp_head', 'mstoday_largo_shortcut_icons', 9 );
+
 /**
  * Add new specific touch icons
  */
