@@ -7,7 +7,7 @@
  */
 
 /**
- * Generate the tax_query args for thoe homepage fiver LMP
+ * Generate the tax_query args for the homepage river LMP
  *
  * @return Array
  * @link https://github.com/INN/umbrella-voiceofoc/blob/b90f7fa9b80cabc1f914140bb314a06f5d51836e/wp-content/themes/voiceofoc/inc/homepage.php#L24-L57
