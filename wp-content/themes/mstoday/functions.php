@@ -10,6 +10,7 @@ $includes = array(
 	'/inc/open-graph.php',
 	'/inc/blank-page-template.php',
 	'/inc/load-more-posts.php',
+	'/inc/woocommerce.php',
 );
 // Perform load
 foreach ( $includes as $include ) {
