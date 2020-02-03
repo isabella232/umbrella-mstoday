@@ -185,18 +185,23 @@ function mstoday_apple_news_article_update_captions_shim( $json, $post_id ){
 	foreach( $attachments as $attachment ){
 
 		$attachment_caption = wp_get_attachment_caption( $attachment->ID );
-		$attachment_credit = navis_get_media_credit( $attachment->ID );
+
+		if ( function_exists( 'navis_get_media_credit' ) ) {
+			$attachment_credit = navis_get_media_credit( $attachment->ID );
+		}
 
 		if( !empty( $attachment_caption ) ) {
 			array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_caption ) );
 		}
 
-		if( !empty( $attachment_credit->credit ) ) {
-			array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_credit->credit ) );
-		}
+		if( isset( $attachment_credit ) && !empty( $attachment_credit ) ) {
+			if( !empty( $attachment_credit->credit ) ) {
+				array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_credit->credit ) );
+			}
 
-		if( !empty( $attachment_credit->org ) ) {
-			array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_credit->org ) );
+			if( !empty( $attachment_credit->org ) ) {
+				array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_credit->org ) );
+			}
 		}
 
 	}
