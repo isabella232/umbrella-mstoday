@@ -1,8 +1,8 @@
 <?php
 /**
- * Single Post Template: One Column (Standard Layout)
- * Template Name: One Column (Standard Layout)
- * Description: Shows the post with a small right sidebar 
+ * Woocommerce Single Product
+ * Template Name: Woocommerce Single Product
+ * Description: Shows Woocommerce products without any article widgets
  */
 
 global $shown_ids;
