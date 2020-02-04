@@ -158,6 +158,114 @@ function mstoday_add_wide_image_support() {
 add_action( 'after_setup_theme', 'mstoday_add_wide_image_support' );
 
 /**
+ * A shim to make captions in articles show as actual captions instead of as body content.
+ * 
+ * Waiting for this to be fixed in the actual ANP plugin. 
+ * https://github.com/INN/umbrella-mstoday/issues/57#issuecomment-580844062
+ * 
+ * The general idea here is to find all images attached to the post, find their
+ * captions and media credits, then loop through $json and if any body component matches
+ * an image caption/credit, change that component to be `role = caption` instead of `role = body`.
+ * 
+ * @param arr $json An array of the post content in JSON format
+ * @param int $post_id The post id
+ * 
+ * @return arr @json The modified post content JSON
+ */
+function mstoday_apple_news_article_update_captions_shim( $json, $post_id ){
+
+	// grab all attachments tied to this post
+	$attachments = get_attached_media( 'image', $post->ID );
+
+	// init empty arr
+	$captions_and_credits = array();
+
+	// loop through all returned attachments and add their captions and 
+	// credits to our $captions_and_credits arr
+	foreach( $attachments as $attachment ){
+
+		$attachment_caption = wp_get_attachment_caption( $attachment->ID );
+
+		if ( function_exists( 'navis_get_media_credit' ) ) {
+			$attachment_credit = navis_get_media_credit( $attachment->ID );
+		}
+
+		if( !empty( $attachment_caption ) ) {
+			array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_caption ) );
+		}
+
+		if( isset( $attachment_credit ) && !empty( $attachment_credit ) ) {
+			if( !empty( $attachment_credit->credit ) ) {
+				array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_credit->credit ) );
+			}
+
+			if( !empty( $attachment_credit->org ) ) {
+				array_push( $captions_and_credits, preg_replace("/[^a-z0-9.]+/i", "", $attachment_credit->org ) );
+			}
+		}
+
+	}
+
+	// woohoo set an index
+	$index = -1;
+	$dropcap_set = false;
+
+	// this is where the fun begins
+	// loop through all $json body components and if one matches a caption/credit, update its role
+	foreach( $json['components'] as $component ) {
+
+		$index++;
+
+		// we have to make it only alphanumeric because this plugin is annoying and adds way too much whitespace
+		// that doesn't want to be stripped out with trim, str_replace, etc.
+		$component_text = preg_replace("/[^a-z0-9.]+/i", "", $component['text']);
+		$component_text = trim( $component_text, 'p' );
+	
+		// if the component text actually matches a credit or caption, update it
+		if( in_array( $component_text, $captions_and_credits ) ) {
+			
+			// that's better (hopefully)
+			$json['components'][$index]['role'] = 'caption';
+			$json['components'][$index]['textStyle'] = array(
+				"textAlignment" => "left",
+				"fontName" => "Helvetica-Bold",
+				"fontSize" => 14,
+			);
+
+			// who needs a layout if you're a caption
+			unset($json['components'][$index]['layout']);
+
+		}
+
+		// if a dropcap component is found, make sure we don't update any others to use a dropcap
+		if( false === $dropcap_set && 'dropcapBodyStyle' === $json['components'][$index]['textStyle'] ) {
+
+			$dropcap_set = true;
+
+		}
+
+		// terrible way to fix the dropcap, but it's the only way that works
+		// if this component has role = body and the dropcap has not yet been set, 
+		// we can go ahead and safely add the dropcap to this component
+		if( false === $dropcap_set && 'body' === $json['components'][$index]['role'] ) {
+			
+			$json['components'][$index]['textStyle'] = 'dropcapBodyStyle';
+			$dropcap_set = true;
+
+		}
+
+	}
+
+	// uncomment if you're interested in seeing what the $json looks like
+	// print("<pre>".print_r($json,true)."</pre>");
+	// die();
+
+	return $json;
+
+}
+add_filter('apple_news_generate_json', 'mstoday_apple_news_article_update_captions_shim', 10, 2);
+
+/**
  * Copied from largo_layout_meta_box_dsiplay()
  * https://github.com/INN/largo/blob/512da701664b329f2f92244bbe54880a6e146431/inc/post-metaboxes.php#L169-L198
  * 
