@@ -14,8 +14,6 @@ get_header();
 	<?php
 		while ( have_posts() ) : the_post();
 
-			$shown_ids[] = get_the_ID();
-
 			$partial = ( is_page() ) ? 'page' : 'single';
 
 			get_template_part( 'partials/content', $partial );
