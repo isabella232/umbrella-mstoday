@@ -264,3 +264,64 @@ function mstoday_apple_news_article_update_captions_shim( $json, $post_id ){
 
 }
 add_filter('apple_news_generate_json', 'mstoday_apple_news_article_update_captions_shim', 10, 2);
+
+/**
+ * Copied from largo_layout_meta_box_dsiplay()
+ * https://github.com/INN/largo/blob/512da701664b329f2f92244bbe54880a6e146431/inc/post-metaboxes.php#L169-L198
+ * 
+ * The only modification that's made here is it only fires if the post type is page
+ * and switches all `post` to `page` in titles/descriptions
+ */
+function mstoday_layout_meta_box_display () {
+	global $post;
+
+	wp_nonce_field( 'largo_meta_box_nonce', 'meta_box_nonce' );
+
+	$current_template = (of_get_option('single_template') == 'normal')? __('One Column (Standard)', 'largo'):__('Two Column (Classic)', 'largo');
+
+	if ( $post->post_type == 'page' ) {
+		echo '<p><strong>' . __('Template', 'largo' ) . '</strong></p>';
+		echo '<p>' . __('Select the page template you wish this page to use.', 'largo') . '</p>';
+		echo '<label class="hidden" for="post_template">' . __("Page Template", 'largo' ) . '</label>';
+		echo '<select name="_wp_post_template" id="post_template" class="dropdown">';
+		echo '<option value="">' . sprintf(__( 'Default: %s', 'largo' ), $current_template) . '</option>';
+		post_templates_dropdown(); //get the options
+		echo '</select>';
+	}
+
+	echo '<p><strong>' . __('Custom Sidebar', 'largo' ) . '</strong><br />';
+	echo __('Select a custom sidebar to display.', 'largo' ) . '</p>';
+	echo '<label class="hidden" for="custom_sidebar">' . __("Custom Sidebar", 'largo' ) . '</label>';
+	echo '<select name="custom_sidebar" id="custom_sidebar" class="dropdown">';
+	largo_custom_sidebars_dropdown(); //get the options
+	echo '</select>';
+}
+
+/**
+ * Actually adds the layout metabox to the page editor
+ */
+function mstoday_add_layout_meta_box_to_pages() {
+	largo_add_meta_box(
+		'mstoday_layout_meta',
+		__( 'Layout Options', 'mstoday' ),
+		'mstoday_layout_meta_box_display',
+		array('page'),
+		'side',
+		'core'
+	);
+}
+add_filter( 'init', 'mstoday_add_layout_meta_box_to_pages' );
+
+/**
+ * Expanding Largo get_post_template() to also fire on pages
+ * https://github.com/INN/largo/blob/512da701664b329f2f92244bbe54880a6e146431/inc/post-templates.php#L64-L84
+ * 
+ * Filters the page template value, and replaces it with
+ * the template chosen by the user, if they chose one.
+ */
+function mstoday_get_page_template() {
+	if( function_exists( 'get_post_template' ) ) {
+		add_filter( 'page_template', 'get_post_template' );
+	}
+}
+add_filter( 'init', 'mstoday_get_page_template' );
