@@ -325,3 +325,29 @@ function mstoday_get_page_template() {
 	}
 }
 add_filter( 'init', 'mstoday_get_page_template' );
+
+/**
+ * Display a subscribe button in the navbars
+ * 
+ * @param str $location The location that this button is placed
+ * 
+ * @return str The formatted subscribe button
+ */
+ function mstoday_subscribe_button( $location = null ) {
+
+    if( 'sticky' === $location ) {
+
+        printf( '<a class="subscribe-link" href="%1$s"><span>%2$s</span></a>',
+            esc_url( '\/subscribe\/' ),
+            esc_html( 'Subscribe' )
+        );
+
+    } else {
+
+        printf( '<div class="subscribe-btn"><a href="%1$s">%2$s</a></div>',
+            esc_url( '\/subscribe\/' ),
+            esc_html( 'Subscribe' )
+        );
+
+    }
+} 
