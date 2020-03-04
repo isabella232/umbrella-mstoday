@@ -82,6 +82,39 @@
   height: auto;
   width: auto;
 }
+.subscribe-btn {
+  float: left;
+  margin: 5px 0 0 10px;
+  background: #b92454;
+  font-size: 14px;
+  line-height: 2;
+}
+.subscribe-btn a {
+  padding: 24px 7px;
+  color: #fff;
+}
+.subscribe-btn a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.subscribe-btn:hover {
+  background: #a4204a;
+}
+.subscribe .subscribe-link span {
+  padding: 4px 8px;
+  color: #fff;
+  background-color: #b92454;
+  font-size: 16px;
+}
+.subscribe .subscribe-link span:hover {
+  background-color: #a4204a;
+}
+.subscribe .subscribe-link:hover {
+  background: transparent;
+}
+.subscribe:hover {
+  background: transparent;
+}
 /* Typography */
 body {
   color: #323e48;
