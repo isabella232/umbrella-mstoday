@@ -30,6 +30,10 @@
 #before-footer .widget {
   margin-bottom: 0;
 }
+.single article aside.scaip {
+  margin-left: 0;
+  margin-right: 0;
+}
 .signup-interstitial,
 .donate-interstitial,
 .single .scaip {
