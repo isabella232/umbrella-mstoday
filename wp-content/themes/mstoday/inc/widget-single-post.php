@@ -21,12 +21,12 @@ class MStoday_Single_Post extends WP_Widget {
 	public function __construct() {
 
 		$widget_ops = array(
-			'classname' => 'mstoday-single-post',
+			'classname' => 'mstoday-single-post largo-recent-posts',
 			'description' => __( 'Displays a single post.', 'mstoday' ),
 		);
 		parent::__construct(
 			'mstoday-single-post', // Base ID
-			__( 'Mississippi Today Single Post', 'mstoday' ), // Name
+			__( 'MS Today Single Post', 'mstoday' ), // Name
 			$widget_ops // Args
 		);
 
@@ -57,7 +57,6 @@ class MStoday_Single_Post extends WP_Widget {
 		$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
 		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 		$post_id = isset( $instance['post_id'] ) ? $instance['post_id'] : null;
-		error_log(var_export( $post_id, true));
 
 		$query_args = array (
 			'post_status'    => 'publish',
@@ -156,11 +155,7 @@ class MStoday_Single_Post extends WP_Widget {
 
 	public function form( $instance ) {
 		$defaults = array(
-			'title' => sprintf(
-				// translators: %s is the word this site uses for "posts", like "articles" or "stories". It's a plural noun.
-				__( 'Recent %1$s' , 'largo' ),
-				of_get_option( 'posts_term_plural', 'Posts' )
-			),
+			'title' => __( 'Single Post' , 'largo' ),
 			'post_id' => null,
 			'thumbnail_display' => 'small',
 			'image_align' => 'left',
@@ -184,18 +179,21 @@ class MStoday_Single_Post extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'largo' ); ?></label>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" style="width:90%;" type="text" />
+			<input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" style="" class="widefat" type="text" />
 		</p>
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'post_id' ) ); ?>"><?php esc_html_e( 'ID of post to show:', 'mstoday' ); ?></label>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'post_id' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'post_id' ) ); ?>" value="<?php echo esc_attr( $instance['post_id'] ); ?>" style="width:90%;" type="number" />
+			<input id="<?php echo esc_attr( $this->get_field_id( 'post_id' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'post_id' ) ); ?>" value="<?php echo esc_attr( $instance['post_id'] ); ?>" style="clear: both;" class="widefat" type="number" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'post_id' ) ); ?>">
+				<?php echo wp_kses_post( __( 'The post ID is the <code>130248</code> in the <code>/wp-admin/post.php?post=130248&action=edit</code> part of the URL when you edit a post.', 'mstoday' ) ); ?>
+			</label>
 		</p>
 
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail_display' ) ); ?>"><?php esc_html_e( 'Thumbnail Image', 'largo' ); ?></label>
-			<select id="<?php echo esc_attr( $this->get_field_id( 'thumbnail_display' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail_display' ) ); ?>" class="widefat" style="width:90%;">
+			<select id="<?php echo esc_attr( $this->get_field_id( 'thumbnail_display' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail_display' ) ); ?>" class="widefat" style="">
 				<option <?php selected( $instance['thumbnail_display'], 'small' ); ?> value="small"><?php esc_html_e( 'Small (60x60)', 'largo' ); ?></option>
 				<option <?php selected( $instance['thumbnail_display'], 'medium' ); ?> value="medium"><?php esc_html_e( 'Medium (140x140)', 'largo' ); ?></option>
 				<option <?php selected( $instance['thumbnail_display'], 'large' ); ?> value="large"><?php esc_html_e( 'Large (Full width of the widget)', 'largo' ); ?></option>
@@ -206,7 +204,7 @@ class MStoday_Single_Post extends WP_Widget {
 		<!-- Image alignment -->
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'image_align' ) ); ?>"><?php esc_html_e( 'Image Alignment', 'largo' ); ?></label>
-			<select id="<?php echo esc_attr( $this->get_field_id( 'image_align' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'image_align' ) ); ?>" class="widefat" style="width:90%;">
+			<select id="<?php echo esc_attr( $this->get_field_id( 'image_align' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'image_align' ) ); ?>" class="widefat" style="">
 				<option <?php selected( $instance['image_align'], 'left' ); ?> value="left"><?php esc_html_e( 'Left align', 'largo' ); ?></option>
 				<option <?php selected( $instance['image_align'], 'right' ); ?> value="right"><?php esc_html_e( 'Right align', 'largo' ); ?></option>
 			</select>
@@ -214,7 +212,7 @@ class MStoday_Single_Post extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'excerpt_display' ) ); ?>"><?php esc_html_e( 'Excerpt Display', 'largo' ); ?></label>
-			<select id="<?php echo esc_attr( $this->get_field_id( 'excerpt_display' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'excerpt_display' ) ); ?>" class="widefat" style="width:90%;">
+			<select id="<?php echo esc_attr( $this->get_field_id( 'excerpt_display' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'excerpt_display' ) ); ?>" class="widefat" style="">
 				<option <?php selected( $instance['excerpt_display'], 'num_sentences' ); ?> value="num_sentences"><?php esc_html_e( 'Use # of Sentences', 'largo' ); ?></option>
 				<option <?php selected( $instance['excerpt_display'], 'custom_excerpt' ); ?> value="custom_excerpt"><?php esc_html_e( 'Use Custom Post Excerpt', 'largo' ); ?></option>
 				<option <?php selected( $instance['excerpt_display'], 'none' ); ?> value="none"><?php esc_html_e( 'None', 'largo' ); ?></option>
@@ -223,7 +221,7 @@ class MStoday_Single_Post extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>"><?php esc_html_e( 'Excerpt Length (# of Sentences):', 'largo' ); ?></label>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_sentences' ) ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" type="number" min="0"/>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_sentences' ) ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="" type="number" min="0"/>
 		</p>
 
 		<p>
