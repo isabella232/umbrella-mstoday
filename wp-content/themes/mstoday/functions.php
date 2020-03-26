@@ -10,6 +10,7 @@ $includes = array(
 	'/inc/open-graph.php',
 	'/inc/blank-page-template.php',
 	'/inc/load-more-posts.php',
+	'/inc/widget-single-post.php',
 );
 // Perform load
 foreach ( $includes as $include ) {
@@ -99,9 +100,9 @@ add_action( 'largo_loop_after_post_x', 'mstoday_interstitial', 10, 2 );
  * @uses remove_action (which in turn uses remove_filter, see https://developer.wordpress.org/reference/functions/remove_filter/)
  * @link https://github.com/INN/Largo/blob/master/inc/taxonomies.php#L346 see largo_category_archive_posts, which is what we're removing.
  */
-function mstoday_remove_category_header_on_this_one_specific_category() {
+function mstoday_remove_category_header_on_this_one_specific_category( $query ) {
 	$qo = get_queried_object();
-	if ( is_main_query() && is_category() &&
+	if ( $query->is_main_query() && $query->is_category() &&
 		( 'around-the-state' === $qo->slug || 'mississippi-roundup' === $qo->slug )
 	) {
 		remove_action( 'pre_get_posts', 'largo_category_archive_posts', 15 );
