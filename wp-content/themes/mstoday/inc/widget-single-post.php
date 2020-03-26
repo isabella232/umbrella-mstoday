@@ -124,7 +124,7 @@ class MStoday_Single_Post extends WP_Widget {
 		echo '</ul>';
 
 		if ( ! empty( $instance['linkurl'] ) && ! empty( $instance['linktext'] ) ) {
-			echo '<p class="morelink btn btn-primary"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
+			echo '<p class="morelink"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
 		}
 
 		// close the widget
