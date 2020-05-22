@@ -124,6 +124,11 @@
   width: 100%;
   padding: 10px 0;
 }
+@media (max-width: 768px) {
+  .single.blank-page .entry-content h1 {
+    font-size: 38px;
+  }
+}
 /* Typography */
 body {
   color: #323e48;
