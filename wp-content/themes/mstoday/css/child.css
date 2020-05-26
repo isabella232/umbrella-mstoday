@@ -33,13 +33,11 @@
 .single article aside.scaip {
   margin-left: 0;
   margin-right: 0;
-  background-color: transparent;
 }
 .signup-interstitial,
 .donate-interstitial,
 .single .scaip {
   padding: 20px 40px;
-  background-color: #a4d5e4;
   margin-bottom: 2em;
   text-align: center;
 }
