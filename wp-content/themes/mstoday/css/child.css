@@ -38,7 +38,6 @@
 .donate-interstitial,
 .single .scaip {
   padding: 20px 40px;
-  background-color: #a4d5e4;
   margin-bottom: 2em;
   text-align: center;
 }
@@ -122,6 +121,11 @@
 .single .article-bottom .largo-donate .btn {
   width: 100%;
   padding: 10px 0;
+}
+@media (max-width: 768px) {
+  .single.blank-page .entry-content h1 {
+    font-size: 38px;
+  }
 }
 /* Typography */
 body {
