@@ -377,7 +377,7 @@ function mstoday_rocket_load_ignored_scripts( $tag, $handle, $src ) {
 
 		// if the current script matches a $handle, add the specific attribute to allow CF to ignore it
 		if ( $script === $handle ) {
-			$tag = '<script type="text/javascript" src="' . esc_url( $src ) . '" data-cfasync="false"></script>';
+			$tag = '<script type="text/javascript" data-cfasync="false" src="' . esc_url( $src ) . '"></script>';
 		}
 
 	}
