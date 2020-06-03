@@ -370,6 +370,7 @@ function mstoday_rocket_load_ignored_scripts( $tag, $handle, $src ) {
 
 	// array full of script handles that CF RL should ignore
 	$scripts_to_ignore = array(
+		'jquery-core',
 		'load-more-posts'
 	);
 
