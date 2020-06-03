@@ -373,7 +373,7 @@ function mstoday_rocket_load_ignored_scripts( $tag, $handle, $src ) {
 		'load-more-posts'
 	);
 
-	foreach( $scripts_to_ignore as $script) {
+	foreach( $scripts_to_ignore as $script ) {
 
 		// if the current script matches a $handle, add the specific attribute to allow CF to ignore it
 		if ( $script === $handle ) {
