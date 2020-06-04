@@ -352,3 +352,38 @@ add_filter( 'init', 'mstoday_get_page_template' );
 
     }
 } 
+
+/**
+ * Add relevant data attribute to scripts that should be ignored by 
+ * CloudFlare's Rocket Loader functionality
+ * 
+ * @link Rocket Loader docs: https://support.cloudflare.com/hc/en-us/articles/200169436-How-can-I-have-Rocket-Loader-ignore-specific-JavaScripts-
+ * @link GitHub issue: https://github.com/INN/umbrella-mstoday/issues/81
+ * 
+ * @param str $tag The <script> tag for the enqueued script.
+ * @param str $handle The script's registered handle.
+ * @param str $src The script's source URL.
+ * 
+ * @return str $tag The <script> tag for the enqueued script.
+ */
+function mstoday_rocket_load_ignored_scripts( $tag, $handle, $src ) {
+
+	// array full of script handles that CF RL should ignore
+	$scripts_to_ignore = array(
+		'jquery-core',
+		'load-more-posts'
+	);
+
+	foreach( $scripts_to_ignore as $script ) {
+
+		// if the current script matches a $handle, add the specific attribute to allow CF to ignore it
+		if ( $script === $handle ) {
+			$tag = '<script type="text/javascript" data-cfasync="false" src="' . esc_url( $src ) . '"></script>';
+		}
+
+	}
+ 
+	return $tag;
+	
+}
+add_filter( 'script_loader_tag', 'mstoday_rocket_load_ignored_scripts', 10, 3 );
