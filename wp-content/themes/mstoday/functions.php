@@ -430,7 +430,7 @@ function mstoday_dequeue_unused_google_inline_sheets_assets() {
 		'datatables-responsive'
 	);
 
-	if( is_single() || is_page() && has_shortcode( $post->post_content, 'gdoc' ) ) {
+	if( ( is_single() || is_page() ) && has_shortcode( $post->post_content, 'gdoc' ) ) {
 		$maybe_load_assets = true;
 		return;
 	}
