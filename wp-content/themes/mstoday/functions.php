@@ -387,3 +387,63 @@ function mstoday_rocket_load_ignored_scripts( $tag, $handle, $src ) {
 	
 }
 add_filter( 'script_loader_tag', 'mstoday_rocket_load_ignored_scripts', 10, 3 );
+
+/**
+ * Conditionally enqueue all of the required JS and CSS for the Inline Google Spreadsheet Viewer plugin
+ * in order to help with pagespeed and performance. Now these assets should only be loaded on posts or pages
+ * that contain the [gdoc] shortcode.
+ * 
+ * @see https://github.com/INN/umbrella-mstoday/issues/95
+ * @see https://wordpress.org/support/topic/page-load-performance-issues-solution-suggestion/
+ */
+function mstoday_dequeue_unused_google_inline_sheets_assets() {
+
+	global $post;
+	
+	$maybe_load_assets = false;
+
+	$scripts = array(
+		'jquery-datatables',
+		'datatables-buttons',
+		'datatables-buttons-colvis',
+		'datatables-buttons-print',
+		'datatables-buttons-html5',
+		'datatables-fixedheader',
+		'datatables-fixedcolumns',
+		'datatables-responsive',
+		'datatables-select',
+		'igsv-datatables',
+		'google-ajax-api',
+		'igsv-gvizcharts',
+		'pdfmake',
+		'pdfmake-fonts',
+		'vfs-fonts',
+		'jszip'
+	);
+	
+	$styles = array(
+		'jquery-datatables',
+		'datatables-buttons',
+		'datatables-select',
+		'datatables-fixedheader',
+		'datatables-fixedcolumns',
+		'datatables-responsive'
+	);
+
+	if( is_single() || is_page() && has_shortcode( $post->post_content, 'gdoc' ) ) {
+		$maybe_load_assets = true;
+		return;
+	}
+
+	if( false == $maybe_load_assets ) {
+		foreach( $scripts as $script ) {
+			wp_dequeue_script( $script );
+		}
+
+		foreach( $styles as $style ) {
+			wp_dequeue_style( $style );
+		}
+	}
+
+}
+add_filter( 'wp_enqueue_scripts', 'mstoday_dequeue_unused_google_inline_sheets_assets', 9999 );
