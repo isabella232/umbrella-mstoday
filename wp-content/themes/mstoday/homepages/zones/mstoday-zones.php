@@ -5,7 +5,7 @@ function zone_homepage_top_story() {
 	$topstory = largo_home_single_top();
 
 	$shown_ids[] = $topstory->ID;
-	$thumbnail = get_the_post_thumbnail( $topstory->ID, 'full' );
+	$thumbnail = get_the_post_thumbnail( $topstory->ID, 'large' );
 	$excerpt = largo_excerpt( $topstory, 2, false, '', false );
 
 	ob_start(); ?>
@@ -84,7 +84,7 @@ function zone_homepage_second_story() {
 	}
 	foreach ( $featured_stories as $featured ) {
 		$shown_ids[] = $featured->ID;
-		$thumbnail = get_the_post_thumbnail( $featured->ID, 'rect_thumb' ); 
+		$thumbnail = get_the_post_thumbnail( $featured->ID, 'rect_thumb_half' );
 		$excerpt = largo_excerpt( $featured, 2, false, '', false );
 	?>
 		<div class="span4">
