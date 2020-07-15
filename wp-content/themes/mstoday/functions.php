@@ -447,3 +447,64 @@ function mstoday_dequeue_unused_google_inline_sheets_assets() {
 
 }
 add_filter( 'wp_enqueue_scripts', 'mstoday_dequeue_unused_google_inline_sheets_assets', 9999 );
+
+/**
+ * Conditionally enqueue all of the required JS and CSS for the SiteOrigin page builder plugin + its addons
+ * in order to help with pagespeed and performance. Now these assets should only be loaded on posts or pages
+ * where `siteorigin_panels_render( $post->ID )` isn't empty.
+ * 
+ * @see https://github.com/INN/umbrella-mstoday/issues/95
+ * @see https://siteorigin.com/docs/widgets-bundle/form-building/builder-field/
+ * @see https://siteorigin.com/thread/check-if-page-is-using-the-page-builder/
+ */
+function mstoday_dequeue_unused_site_origin_assets() {
+
+	global $post;
+
+	$maybe_load_assets = false;
+
+	if ( ( is_single() || is_page() ) && siteorigin_panels_render( $post->ID ) ){
+		$maybe_load_assets = true;
+		return;
+	}
+
+	$scripts = array(
+		'siteorigin-premium-web-font-importer',
+		'sow-slider-slider-cycle2',
+		'sow-slider-slider-cycle2-swipe',
+		'sow-google-map',
+		'sow-slider-slider',
+		'sowb-fittext',
+		'sow-cta-main'
+	);
+
+	$styles = array(
+		'sow-slider-slider-cycle2',
+		'sow-slider-slider-cycle2-swipe',
+		'sow-google-map',
+		'sow-slider-slider',
+		'sow-button-base',
+		'sow-cta-main'
+	);
+
+	// loop through /uploads/siteorigin-widgets/* and remove all of those css files
+	// because for some reason the SO widgets bundle plugin creates these files based off of widget settigns
+	$uploads_dir = wp_upload_dir();
+	$siteorigin_uploads = $uploads_dir['basedir'] . '/siteorigin-widgets';
+	$uploads_items = list_files( $siteorigin_uploads, 1 );
+	foreach ( $uploads_items as $item ) {
+		$styles[] = str_replace( '.css', '', basename( $item ) );
+	}
+
+	if( false == $maybe_load_assets ) {
+		foreach( $scripts as $script ) {
+			wp_dequeue_script( $script );
+		}
+
+		foreach( $styles as $style ) {
+			wp_dequeue_style( $style );
+		}
+	}
+
+}
+add_filter( 'wp_enqueue_scripts', 'mstoday_dequeue_unused_site_origin_assets', 9999999 );
