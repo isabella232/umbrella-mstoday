@@ -492,8 +492,10 @@ function mstoday_dequeue_unused_site_origin_assets() {
 	$uploads_dir = wp_upload_dir();
 	$siteorigin_uploads = $uploads_dir['basedir'] . '/siteorigin-widgets';
 	$uploads_items = list_files( $siteorigin_uploads, 1 );
-	foreach ( $uploads_items as $item ) {
-		$styles[] = str_replace( '.css', '', basename( $item ) );
+	if( ! empty( $uploads_items ) ) {
+		foreach ( $uploads_items as $item ) {
+			$styles[] = str_replace( '.css', '', basename( $item ) );
+		}
 	}
 
 	if( false == $maybe_load_assets ) {
