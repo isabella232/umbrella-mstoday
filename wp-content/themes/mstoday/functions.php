@@ -389,6 +389,129 @@ function mstoday_rocket_load_ignored_scripts( $tag, $handle, $src ) {
 add_filter( 'script_loader_tag', 'mstoday_rocket_load_ignored_scripts', 10, 3 );
 
 /**
+ * Conditionally enqueue all of the required JS and CSS for the Inline Google Spreadsheet Viewer plugin
+ * in order to help with pagespeed and performance. Now these assets should only be loaded on posts or pages
+ * that contain the [gdoc] shortcode.
+ * 
+ * @see https://github.com/INN/umbrella-mstoday/issues/95
+ * @see https://wordpress.org/support/topic/page-load-performance-issues-solution-suggestion/
+ */
+function mstoday_dequeue_unused_google_inline_sheets_assets() {
+
+	global $post;
+	
+	$maybe_load_assets = false;
+
+	$scripts = array(
+		'jquery-datatables',
+		'datatables-buttons',
+		'datatables-buttons-colvis',
+		'datatables-buttons-print',
+		'datatables-buttons-html5',
+		'datatables-fixedheader',
+		'datatables-fixedcolumns',
+		'datatables-responsive',
+		'datatables-select',
+		'igsv-datatables',
+		'google-ajax-api',
+		'igsv-gvizcharts',
+		'pdfmake',
+		'pdfmake-fonts',
+		'vfs-fonts',
+		'jszip'
+	);
+	
+	$styles = array(
+		'jquery-datatables',
+		'datatables-buttons',
+		'datatables-select',
+		'datatables-fixedheader',
+		'datatables-fixedcolumns',
+		'datatables-responsive'
+	);
+
+	if( ( is_single() || is_page() ) && is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'gdoc' ) ) {
+		$maybe_load_assets = true;
+		return;
+	}
+
+	if( false == $maybe_load_assets ) {
+		foreach( $scripts as $script ) {
+			wp_dequeue_script( $script );
+		}
+
+		foreach( $styles as $style ) {
+			wp_dequeue_style( $style );
+		}
+	}
+
+}
+add_filter( 'wp_enqueue_scripts', 'mstoday_dequeue_unused_google_inline_sheets_assets', 9999 );
+
+/**
+ * Conditionally enqueue all of the required JS and CSS for the SiteOrigin page builder plugin + its addons
+ * in order to help with pagespeed and performance. Now these assets should only be loaded on posts or pages
+ * where `siteorigin_panels_render( $post->ID )` isn't empty.
+ * 
+ * @see https://github.com/INN/umbrella-mstoday/issues/95
+ * @see https://siteorigin.com/docs/widgets-bundle/form-building/builder-field/
+ * @see https://siteorigin.com/thread/check-if-page-is-using-the-page-builder/
+ */
+function mstoday_dequeue_unused_site_origin_assets() {
+
+	global $post;
+
+	$maybe_load_assets = false;
+
+	if ( ( is_single() || is_page() ) && is_a( $post, 'WP_Post' ) && siteorigin_panels_render( $post->ID ) ){
+		$maybe_load_assets = true;
+		return;
+	}
+
+	$scripts = array(
+		'siteorigin-premium-web-font-importer',
+		'sow-slider-slider-cycle2',
+		'sow-slider-slider-cycle2-swipe',
+		'sow-google-map',
+		'sow-slider-slider',
+		'sowb-fittext',
+		'sow-cta-main'
+	);
+
+	$styles = array(
+		'sow-slider-slider-cycle2',
+		'sow-slider-slider-cycle2-swipe',
+		'sow-google-map',
+		'sow-slider-slider',
+		'sow-button-base',
+		'sow-cta-main'
+	);
+
+	if( false === $maybe_load_assets ) {
+		// loop through /uploads/siteorigin-widgets/* and remove all of those css files
+		// because for some reason the SO widgets bundle plugin creates these files based off of widget settigns
+		$uploads_dir = wp_upload_dir();
+		$siteorigin_uploads = $uploads_dir['basedir'] . '/siteorigin-widgets';
+		$uploads_items = list_files( $siteorigin_uploads, 1 );
+		if( ! empty( $uploads_items ) ) {
+			foreach ( $uploads_items as $item ) {
+				$styles[] = str_replace( '.css', '', basename( $item ) );
+			}
+		}
+
+		foreach( $scripts as $script ) {
+			wp_dequeue_script( $script );
+		}
+
+		foreach( $styles as $style ) {
+			wp_dequeue_style( $style );
+		}
+	}
+
+}
+add_filter( 'wp_enqueue_scripts', 'mstoday_dequeue_unused_site_origin_assets', 9999999 );
+
+/**
  * Register child theme specific nav menus for MS Today child theme
  * 
  * @see https://github.com/INN/umbrella-mstoday/issues/91#issuecomment-658402245
