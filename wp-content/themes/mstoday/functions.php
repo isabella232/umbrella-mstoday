@@ -510,3 +510,19 @@ function mstoday_dequeue_unused_site_origin_assets() {
 
 }
 add_filter( 'wp_enqueue_scripts', 'mstoday_dequeue_unused_site_origin_assets', 9999999 );
+
+/**
+ * Register child theme specific nav menus for MS Today child theme
+ * 
+ * @see https://github.com/INN/umbrella-mstoday/issues/91#issuecomment-658402245
+ */
+function mstoday_register_custom_nav_menus() {
+
+	$menus = array(
+		'sticky-nav' => __( 'Sticky Navigation', 'mstoday' )
+	);
+
+	register_nav_menus( $menus );
+
+}
+add_action( 'init', 'mstoday_register_custom_nav_menus' );
