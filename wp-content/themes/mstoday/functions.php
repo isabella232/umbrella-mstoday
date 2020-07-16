@@ -387,3 +387,19 @@ function mstoday_rocket_load_ignored_scripts( $tag, $handle, $src ) {
 	
 }
 add_filter( 'script_loader_tag', 'mstoday_rocket_load_ignored_scripts', 10, 3 );
+
+/**
+ * Register child theme specific nav menus for MS Today child theme
+ * 
+ * @see https://github.com/INN/umbrella-mstoday/issues/91#issuecomment-658402245
+ */
+function mstoday_register_custom_nav_menus() {
+
+	$menus = array(
+		'sticky-nav' => __( 'Sticky Navigation', 'mstoday' )
+	);
+
+	register_nav_menus( $menus );
+
+}
+add_action( 'init', 'mstoday_register_custom_nav_menus' );
